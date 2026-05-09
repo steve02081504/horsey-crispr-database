@@ -96,7 +96,13 @@
 		"apple": "リンゴ",
 		"apple_desc": "木になっているリンゴ",
 		"beer": "ビール",
-		"beer_desc": "酒場のビール"
+		"beer_desc": "酒場のビール",
+		"hay": "干し草",
+		"hay_desc": "店で売っている干し草",
+		"haystack": "干し草の山",
+		"haystack_desc": "店の干し草の山",
+		"hot_sauce": "辛味ソース",
+		"hot_sauce_desc": "交換・報酬・探索で手に入る辛味のソース"
 	},
 	"editor": {
 		"crispr": "CRISPR ビュー",

@@ -96,7 +96,13 @@
 		"apple": "苹果",
 		"apple_desc": "树上的苹果",
 		"beer": "啤酒",
-		"beer_desc": "酒馆的啤酒"
+		"beer_desc": "酒馆的啤酒",
+		"hay": "干草",
+		"hay_desc": "商店里的干草",
+		"haystack": "干草堆",
+		"haystack_desc": "商店里的干草堆",
+		"hot_sauce": "辣酱",
+		"hot_sauce_desc": "交换或获奖或探索得到的辣酱"
 	},
 	"editor": {
 		"crispr": "CRISPR 视图",

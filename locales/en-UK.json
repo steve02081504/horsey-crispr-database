@@ -96,7 +96,13 @@
 		"apple": "Apple",
 		"apple_desc": "Apple on the tree",
 		"beer": "Beer",
-		"beer_desc": "Beer from the tavern"
+		"beer_desc": "Beer from the tavern",
+		"hay": "Hay",
+		"hay_desc": "Hay from the shop",
+		"haystack": "Haystack",
+		"haystack_desc": "Haystack at the shop",
+		"hot_sauce": "Hot sauce",
+		"hot_sauce_desc": "Hot sauce from trades, rewards, or exploration"
 	},
 	"editor": {
 		"crispr": "CRISPR view",

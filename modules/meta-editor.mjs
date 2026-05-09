@@ -78,10 +78,12 @@ export function populateMetaTagPick(sel, metaSelectedTagIds, db, hooks) {
  *   getTagDisplay: (tag: import('./db.mjs').DbTag) => string
  *   geti18n: (k: string) => string
  *   onMetaTagsChanged: () => void
+ *   preserveUnsavedMeta?: boolean
  * }} ctx
  */
 export function loadMetaFromSelection(ctx) {
 	const { db, selectedId, metaSelectedTagIds, dnaTitle, dnaDesc, renderDirtyFlag } = ctx
+	const preserveUnsavedMeta = Boolean(ctx.preserveUnsavedMeta)
 	const d = db.dnas.find((x) => x.id === selectedId)
 	const nameEl = /** @type {HTMLInputElement | null} */ (document.getElementById('meta-name'))
 	const descEl = /** @type {HTMLTextAreaElement | null} */ (document.getElementById('meta-desc'))
@@ -89,8 +91,6 @@ export function loadMetaFromSelection(ctx) {
 	const pick = /** @type {HTMLSelectElement | null} */ (document.getElementById('meta-tag-pick'))
 	const createBtn = document.getElementById('meta-tag-create')
 	if (!nameEl || !descEl || !tplCb) return
-
-	metaSelectedTagIds.length = 0
 
 	const chipHooks = {
 		getTagDisplay: ctx.getTagDisplay,
@@ -100,6 +100,7 @@ export function loadMetaFromSelection(ctx) {
 	const pickHooks = { getTagDisplay: ctx.getTagDisplay, geti18n: ctx.geti18n }
 
 	if (!d) {
+		metaSelectedTagIds.length = 0
 		nameEl.value = ''
 		descEl.value = ''
 		tplCb.checked = false
@@ -115,10 +116,19 @@ export function loadMetaFromSelection(ctx) {
 	descEl.disabled = false
 	if (pick) pick.disabled = false
 	if (createBtn) createBtn.disabled = false
-	nameEl.value = d.nameI18nKey ? dnaTitle(d) : d.name || ''
-	descEl.value = d.descriptionI18nKey ? dnaDesc(d) : d.description || ''
-	tplCb.checked = Boolean(d.isTemplate)
-	metaSelectedTagIds.push(...(d.tagIds || []))
+
+	if (!preserveUnsavedMeta) {
+		metaSelectedTagIds.length = 0
+		nameEl.value = d.nameI18nKey ? dnaTitle(d) : d.name || ''
+		descEl.value = d.descriptionI18nKey ? dnaDesc(d) : d.description || ''
+		tplCb.checked = Boolean(d.isTemplate)
+		metaSelectedTagIds.push(...(d.tagIds || []))
+	} else {
+		for (let i = metaSelectedTagIds.length - 1; i >= 0; i--) {
+			if (!db.tags.some((t) => t.id === metaSelectedTagIds[i])) metaSelectedTagIds.splice(i, 1)
+		}
+	}
+
 	renderMetaTagChips(document.getElementById('meta-tags-chips'), metaSelectedTagIds, db, chipHooks)
 	populateMetaTagPick(pick, metaSelectedTagIds, db, pickHooks)
 	if (pick) pick.value = ''

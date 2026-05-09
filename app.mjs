@@ -123,6 +123,7 @@ async function main() {
 			getTagDisplay,
 			geti18n,
 			onMetaTagsChanged: metaChipHooks.onTagsChanged,
+			preserveUnsavedMeta: isDirty,
 		})
 	}
 

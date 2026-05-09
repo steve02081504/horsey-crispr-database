@@ -45,6 +45,7 @@
 		"role_animal": "动物",
 		"role_vehicle": "载具",
 		"role_fantasy": "幻想生物",
+		"role_item": "物品",
 		"newTagPrompt": "新标签名称",
 		"mergePickTitle": "合并到哪个标签？",
 		"mergePickPlaceholder": "选择目标标签…",
@@ -91,7 +92,11 @@
 		"goblin": "哥布林",
 		"goblin_desc": "哥布林基因组预设",
 		"wheels": "轮子腿",
-		"wheels_desc": "腿部为轮子的特殊预设"
+		"wheels_desc": "腿部为轮子的特殊预设",
+		"apple": "苹果",
+		"apple_desc": "树上的苹果",
+		"beer": "啤酒",
+		"beer_desc": "酒馆的啤酒"
 	},
 	"editor": {
 		"crispr": "CRISPR 视图",

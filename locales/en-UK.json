@@ -45,6 +45,7 @@
 		"role_animal": "Animal",
 		"role_vehicle": "Vehicle",
 		"role_fantasy": "Fantasy",
+		"role_item": "Item",
 		"newTagPrompt": "New tag name",
 		"mergePickTitle": "Merge into which tag?",
 		"mergePickPlaceholder": "Choose target tag…",
@@ -91,7 +92,11 @@
 		"goblin": "Goblin",
 		"goblin_desc": "Goblin genome preset",
 		"wheels": "Wheel legs",
-		"wheels_desc": "Special preset with wheeled legs"
+		"wheels_desc": "Special preset with wheeled legs",
+		"apple": "Apple",
+		"apple_desc": "Apple on the tree",
+		"beer": "Beer",
+		"beer_desc": "Beer from the tavern"
 	},
 	"editor": {
 		"crispr": "CRISPR view",

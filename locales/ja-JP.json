@@ -45,6 +45,7 @@
 		"role_animal": "動物",
 		"role_vehicle": "乗り物",
 		"role_fantasy": "幻想生物",
+		"role_item": "アイテム",
 		"newTagPrompt": "新しいタグ名",
 		"mergePickTitle": "どのタグにマージしますか？",
 		"mergePickPlaceholder": "対象タグを選択…",
@@ -91,7 +92,11 @@
 		"goblin": "ゴブリン",
 		"goblin_desc": "ゴブリンのゲノムプリセット",
 		"wheels": "車輪脚",
-		"wheels_desc": "脚が車輪になっている特殊プリセット"
+		"wheels_desc": "脚が車輪になっている特殊プリセット",
+		"apple": "リンゴ",
+		"apple_desc": "木になっているリンゴ",
+		"beer": "ビール",
+		"beer_desc": "酒場のビール"
 	},
 	"editor": {
 		"crispr": "CRISPR ビュー",

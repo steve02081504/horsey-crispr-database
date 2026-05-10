@@ -735,14 +735,14 @@
 			display: block;
 		}
 
-		.result-helix {
+		.crispr-helix {
 			background: var(--surface);
 			border: 1px solid rgba(148, 163, 184, 0.12);
 			border-radius: var(--radius);
 			margin-bottom: 12px;
 		}
 
-		.result-header {
+		.crispr-helix-header {
 			display: flex;
 			gap: 14px;
 			padding: 12px 14px;
@@ -772,31 +772,53 @@
 			font-weight: 800;
 		}
 
-		.result-body {
+		.crispr-helix-body {
 			padding: 12px 14px;
 		}
 
-		.result-genes {
+		.crispr-genes {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 8px;
 		}
 
-		.result-gene {
+		.crispr-gene {
 			position: relative;
 			background: #202733;
 			border: 1px solid var(--border);
 			border-radius: 10px;
 			padding: 10px;
 			min-width: 150px;
-			cursor: pointer;
+			cursor: default;
 			text-align: left;
 			color: inherit;
 			font: inherit;
 		}
 
-		.result-gene:hover {
+		.crispr-gene:hover {
 			border-color: var(--accent);
+		}
+
+		.base-picker-popover {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 4px;
+			padding: 6px;
+			background: #161d26;
+			border: 1px solid var(--border);
+			border-radius: 8px;
+			box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+			box-sizing: border-box;
+		}
+
+		.base-picker-popover .base {
+			cursor: pointer;
+		}
+
+		.editable-base-invalid {
+			background: #334155;
+			color: #e2e8f0;
+			border: none;
 		}
 
 		.rname {
@@ -882,7 +904,7 @@
 			pointer-events: none;
 		}
 
-		.result-gene:hover .gene-tooltip {
+		.crispr-gene:hover .gene-tooltip {
 			display: block;
 		}
 

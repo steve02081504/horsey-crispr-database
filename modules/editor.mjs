@@ -10,11 +10,9 @@ import {
 	parseGenome,
 	valueColor,
 	alleleSummary,
-	cycleBase,
 } from '../lib/horsey-genetics/genetics-core.mjs'
 import { HELIX_PARAM_SLOTS } from '../lib/horsey-genetics/helix-param-slots.mjs'
 import {
-	cycleGeneSlot,
 	hasMergeableAlleles,
 	mergeAllelesAt,
 	mergeAllMixedAlleles,
@@ -117,13 +115,6 @@ function replaceAt(strand, i, ch) {
 	const a = (strand || '').split('')
 	a[i] = ch
 	return a.join('')
-}
-
-function baseChipHtml(base, size = 'sm') {
-	const b = base?.toUpperCase()
-	return BASES.includes(b)
-		? `<span class="base base-${b} base-${size}">${b}</span>`
-		: '<span class="muted">?</span>'
 }
 
 /**
@@ -417,7 +408,87 @@ export function mountEditor(container, opts) {
 		}
 	}
 
+	/** @type {HTMLElement | null} */
+	let basePickerEl = null
+	/** @type {((ev: MouseEvent) => void) | null} */
+	let basePickerOutside = null
+	/** @type {((ev: KeyboardEvent) => void) | null} */
+	let basePickerEscape = null
+
+	function closeBasePicker() {
+		if (basePickerEl) {
+			basePickerEl.remove()
+			basePickerEl = null
+		}
+		if (basePickerOutside) {
+			document.removeEventListener('mousedown', basePickerOutside, true)
+			basePickerOutside = null
+		}
+		if (basePickerEscape) {
+			document.removeEventListener('keydown', basePickerEscape)
+			basePickerEscape = null
+		}
+	}
+
+	/**
+	 * @param {HTMLElement} anchorEl
+	 * @param {(letter: string) => void} onPick
+	 */
+	function openBasePicker(anchorEl, onPick) {
+		closeBasePicker()
+		const pop = document.createElement('div')
+		pop.className = 'base-picker-popover'
+		pop.setAttribute('role', 'listbox')
+		for (const letter of BASES) {
+			const b = document.createElement('button')
+			b.type = 'button'
+			b.className = `base base-${letter} base-sm`
+			b.textContent = letter
+			b.setAttribute('role', 'option')
+			b.addEventListener('click', (e) => {
+				e.preventDefault()
+				e.stopPropagation()
+				onPick(letter)
+				closeBasePicker()
+			})
+			pop.appendChild(b)
+		}
+		document.body.appendChild(pop)
+		basePickerEl = pop
+		const layout = () => {
+			pop.style.position = 'fixed'
+			pop.style.zIndex = '2000'
+			const ar = anchorEl.getBoundingClientRect()
+			const pad = 8
+			const w = pop.offsetWidth
+			const h = pop.offsetHeight
+			let left = ar.left
+			let top = ar.bottom + 4
+			if (left + w > window.innerWidth - pad) left = window.innerWidth - w - pad
+			if (left < pad) left = pad
+			if (top + h > window.innerHeight - pad) top = Math.max(pad, ar.top - h - 4)
+			pop.style.left = `${left}px`
+			pop.style.top = `${top}px`
+		}
+		requestAnimationFrame(() => {
+			layout()
+		})
+		basePickerEscape = (ev) => {
+			if (ev.key === 'Escape') closeBasePicker()
+		}
+		document.addEventListener('keydown', basePickerEscape)
+		setTimeout(() => {
+			basePickerOutside = (ev) => {
+				const t = /** @type {Node | null} */ (ev.target)
+				if (!t || pop.contains(t) || anchorEl.contains(t)) return
+				closeBasePicker()
+			}
+			document.addEventListener('mousedown', basePickerOutside, true)
+		}, 0)
+	}
+
 	function syncAll() {
+		closeBasePicker()
 		syncOutput()
 		if (viewMode === 'crispr') renderCrispr()
 		else renderParams()
@@ -428,17 +499,18 @@ export function mountEditor(container, opts) {
 	}
 
 	function renderCrispr() {
+		closeBasePicker()
 		crisprMain.innerHTML = ''
 		const filter = geneFilter.trim().toLowerCase()
 		HELIX_MAP.forEach((genes, hi) => {
 			const [s1, s2] = genome[hi] || ['', '']
 			const hasData = Boolean(s1 || s2)
 			const block = document.createElement('div')
-			block.className = 'result-helix'
+			block.className = 'crispr-helix'
 			const header = document.createElement('div')
-			header.className = 'result-header'
+			header.className = 'crispr-helix-header'
 			const heading = document.createElement('div')
-			heading.className = 'result-heading'
+			heading.className = 'crispr-helix-heading'
 			heading.innerHTML = `<div class="helix-title">${escapeHtml(helixTitleLocalized(hi))}</div>
 				<div class="helix-subtitle">${escapeHtml(geti18n_nowarn(`helixDescriptions.${hi}`) || '')}</div>`
 			header.appendChild(heading)
@@ -449,9 +521,9 @@ export function mountEditor(container, opts) {
 				return
 			}
 			const body = document.createElement('div')
-			body.className = 'result-body'
+			body.className = 'crispr-helix-body'
 			const geneList = document.createElement('div')
-			geneList.className = 'result-genes'
+			geneList.className = 'crispr-genes'
 			genes.forEach((geneName, gi) => {
 				const humanName = geneHumanLocalized(geneName)
 				if (filter && !humanName.toLowerCase().includes(filter) && !geneName.toLowerCase().includes(filter))
@@ -463,24 +535,74 @@ export function mountEditor(container, opts) {
 				const v1 = getGeneValue(gene, b1)
 				const v2 = getGeneValue(gene, b2)
 				const isMixed = Boolean(b1 && b2) && b1 !== b2
-				const card = document.createElement('button')
-				card.type = 'button'
-				card.className = 'result-gene'
+				const homozygous = Boolean(b1 && b2 && b1 === b2)
+				const card = document.createElement('div')
+				card.className = 'crispr-gene'
 				card.style.borderColor = `${categoryColor}33`
-				if (!isMixed)
-					card.addEventListener('click', () => {
-						genome = cycleGeneSlot(genome, hi, gi)
-						syncAll()
-					})
 				card.innerHTML = `<div class="rname" style="color:${categoryColor}">${escapeHtml(humanName)}</div>
 					<div class="rpos">${escapeHtml(helixTitleLocalized(hi))} · P${gi}</div>`
 				const valRow = document.createElement('div')
 				valRow.className = 'rval'
+
+				/**
+				 * @param {string} labelKey
+				 * @param {string} [baseChar]
+				 * @param {0|1} strandIdx
+				 * @param {number} displayVal
+				 * @param {boolean} updateBothStrands
+				 */
+				function addAlleleLine(labelKey, baseChar, strandIdx, displayVal, updateBothStrands) {
+					const u = baseChar?.toUpperCase()
+					if (!u) return
+					const line = document.createElement('div')
+					line.className = 'allele-line'
+					const lab = document.createElement('span')
+					lab.className = 'dim'
+					lab.textContent = t(labelKey)
+					const baseBtn = document.createElement('button')
+					baseBtn.type = 'button'
+					baseBtn.className = BASES.includes(u)
+						? `base base-${u} base-sm editable-base`
+						: 'base base-sm editable-base editable-base-invalid'
+					baseBtn.textContent = BASES.includes(u) ? u : '?'
+					baseBtn.addEventListener('click', (e) => {
+						e.stopPropagation()
+						openBasePicker(baseBtn, (letter) => {
+							if (updateBothStrands) {
+								genome = setBaseAt(genome, hi, 0, gi, letter)
+								genome = setBaseAt(genome, hi, 1, gi, letter)
+							} else {
+								genome = setBaseAt(genome, hi, strandIdx, gi, letter)
+							}
+							syncAll()
+						})
+					})
+					const eq = document.createElement('span')
+					eq.className = 'muted'
+					eq.textContent = '='
+					const valSpan = document.createElement('span')
+					valSpan.style.color = valueColor(displayVal)
+					valSpan.style.fontWeight = 'bold'
+					valSpan.textContent = String(displayVal)
+					line.append(lab, baseBtn, eq, valSpan)
+					valRow.appendChild(line)
+				}
+
 				if (b1)
-					valRow.innerHTML += `<div class="allele-line"><span class="dim">${isMixed ? escapeHtml(t('editor.alleleS1')) : escapeHtml(t('editor.alleleSingle'))}</span>${baseChipHtml(b1)}<span class="muted">=</span><span style="color:${valueColor(v1)};font-weight:bold">${v1}</span></div>`
-				if (isMixed && b2)
-					valRow.innerHTML += `<div class="allele-line"><span class="dim">${escapeHtml(t('editor.alleleS2'))}</span>${baseChipHtml(b2)}<span class="muted">=</span><span style="color:${valueColor(v2)};font-weight:bold">${v2}</span></div>`
-				if (!b1 && !b2) valRow.innerHTML += '<span class="dim">—</span>'
+					addAlleleLine(
+						isMixed ? 'editor.alleleS1' : 'editor.alleleSingle',
+						b1,
+						0,
+						v1,
+						homozygous && !isMixed,
+					)
+				if (isMixed && b2) addAlleleLine('editor.alleleS2', b2, 1, v2, false)
+				if (!b1 && !b2) {
+					const dash = document.createElement('span')
+					dash.className = 'dim'
+					dash.textContent = '—'
+					valRow.appendChild(dash)
+				}
 				card.appendChild(valRow)
 				if (isMixed) {
 					const mixedRow = document.createElement('div')
@@ -529,9 +651,12 @@ export function mountEditor(container, opts) {
 			btn.type = 'button'
 			btn.className = `base base-${base.toUpperCase()} base-sm editable-base`
 			btn.textContent = base.toUpperCase()
-			btn.addEventListener('click', () => {
-				genome = setBaseAt(genome, hi, si, bi, cycleBase(base.toUpperCase()))
-				syncAll()
+			btn.addEventListener('click', (e) => {
+				e.stopPropagation()
+				openBasePicker(btn, (letter) => {
+					genome = setBaseAt(genome, hi, si, bi, letter)
+					syncAll()
+				})
 			})
 			row.appendChild(btn)
 		})

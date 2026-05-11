@@ -4,6 +4,23 @@
 		"title": "Horsey CRISPR Database",
 		"description": "Browse, edit and hybridise Horsey DNA using local templates and data."
 	},
+	"tips": [
+		"You can pet your horse by moving the mouse back and forth, or press G to whip it hard!",
+		"The horse races on the tavern TV pick real champions, who then race in the championship.",
+		"Clever horses randomly set up studs in the wild and join races.",
+		"You can temporarily release your horse into the wild so it can take care of its needs on its own.",
+		"You can start the lab manually by repeatedly clicking the lamp at the top—no need to power the plant.",
+		"If you put a horse in Flask Bay on the real-world map, you’ll see the horses there in the gene editor.",
+		"Click the sign to change the race distance at the abandoned track.",
+		"Meat dropped when a horse dies can be turned back into the original horse with DNA.",
+		"You can reclaim land from the sea using fences.",
+		"Dig fully grown grass or buy hay blocks; placing one turns the surrounding nine tiles into grass.",
+		"Dig irradiated grass or the power plant for radioactive matter; placing it irradiates the surrounding nine tiles.",
+		"Place apples on the map to grow apple trees.",
+		"Crocodiles only breed on the water surface.",
+		"You can fill pits with any item—you’ll get that item back when you dig there again.",
+		"When renaming a horse, unsupported characters show up as various pictogram horses."
+	],
 	"app": {
 		"templateStrip": "Start from a template",
 		"noTemplates": "No templates saved yet",
@@ -28,7 +45,8 @@
 		"expand": "Expand",
 		"collapse": "Collapse",
 		"language": "Language",
-		"githubRepo": "GitHub"
+		"githubRepo": "GitHub",
+		"tipsBar": "Tips"
 	},
 	"dnaCard": {
 		"edit": "Edit",

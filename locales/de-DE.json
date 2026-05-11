@@ -4,6 +4,23 @@
 		"title": "Horsey CRISPR-Datenbank",
 		"description": "Durchsuchen, bearbeiten und hybridisieren Sie Horsey-DNA mithilfe lokaler Vorlagen und Daten."
 	},
+	"tips": [
+		"Du kannst dein Pferd streicheln, indem du die Maus hin und her bewegst – oder die Taste G drücken, um es kräftig auszupeitschen!",
+		"Die Rennen auf dem Fernseher in der Schenke ermitteln echte Champions, die später am Championatsrennen teilnehmen.",
+		"Kluge Pferde gründen zufällig Gestüte in der Wildnis und nehmen an Rennen teil.",
+		"Lass dein Pferd vorübergehend frei in der Wildnis – so kann es seine Bedürfnisse selbst regeln.",
+		"Du kannst das Labor starten, indem du wiederholt auf die Lampe oben klickst – ohne das Kraftwerk zu versorgen.",
+		"Bringst du ein Pferd in Flask Bay auf der realen Karte, siehst du die dortigen Pferde im Geneditor.",
+		"Klick auf das Schild, um die Renndistanz auf der verlassenen Bahn zu ändern.",
+		"Beim Tod eines Pferdes fallgelassenes Fleisch lässt sich per DNA wieder in das ursprüngliche Pferd zurückverwandeln.",
+		"Mit Zäunen kannst du Land vom Meer zurückgewinnen.",
+		"Voll ausgewachsenes Gras abbauen oder kaufen liefert Heublöcke; platziert verwandeln sie die neun umliegenden Felder in Gras.",
+		"Verstrahltes Gras oder das Kraftwerk abbauen liefert radioaktives Material; platziert verstrahlt es die neun umliegenden Felder.",
+		"Leg Äpfel auf die Karte, um Apfelbäume zu züchten.",
+		"Bei Krokodilen findet Fortpflanzung nur auf der Wasseroberfläche statt.",
+		"Du kannst Löcher mit jedem Gegenstand füllen – beim erneuten Graben bekommst du ihn zurück.",
+		"Beim Umbenennen eines Pferdes werden nicht unterstützte Zeichen als verschiedene Piktogramm-Pferde angezeigt."
+	],
 	"app": {
 		"templateStrip": "Beginnen Sie mit einer Vorlage",
 		"noTemplates": "Noch keine Vorlagen gespeichert",
@@ -28,7 +45,8 @@
 		"expand": "Expandieren",
 		"collapse": "Zusammenbruch",
 		"language": "Sprache",
-		"githubRepo": "GitHub"
+		"githubRepo": "GitHub",
+		"tipsBar": "Tipps"
 	},
 	"dnaCard": {
 		"edit": "Bearbeiten",

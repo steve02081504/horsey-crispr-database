@@ -4,6 +4,23 @@
 		"title": "Banco de dados Horsey CRISPR",
 		"description": "Navegue, edite e hibridize DNA Horsey com modelos e dados locais."
 	},
+	"tips": [
+		"Você pode acariciar o cavalo movendo o mouse para lá e para cá, ou pressionar a tecla G para dar uma chicotada forte!",
+		"As corridas na TV da taverna elegem campeões de verdade, que depois disputam o campeonato.",
+		"Cavalos mais espertos montam haras aleatórios na natureza e entram nas corridas.",
+		"Você pode soltar o cavalo temporariamente na natureza para que ele cuide das próprias necessidades.",
+		"Dê vários cliques na lâmpada no topo para ligar o laboratório manualmente, sem alimentar a usina.",
+		"Coloque um cavalo na Baía do Frasco no mapa real para ver os cavalos de lá no editor genético.",
+		"Clique na placa para mudar a distância da corrida na pista abandonada.",
+		"A carne que cai quando um cavalo morre pode ser convertida de volta no cavalo original com DNA.",
+		"Dá para aterrar mar com cercas.",
+		"Cave grama totalmente crescida ou compre blocos de feno; ao colocar um, as nove casas ao redor viram grama.",
+		"Cave grama irradiada ou a usina para obter material radioativo; ao colocá-lo, as nove casas ao redor ficam irradiadas.",
+		"Coloque maçãs no mapa para cultivar macieiras.",
+		"A reprodução dos crocodilos só acontece na superfície da água.",
+		"Você pode tapar buracos com qualquer item — ao cavar de novo no mesmo lugar, recupera o item.",
+		"Ao renomear um cavalo, caracteres não suportados aparecem como vários cavalos pictográficos."
+	],
 	"app": {
 		"templateStrip": "Começar por um modelo",
 		"noTemplates": "Nenhum modelo salvo ainda",
@@ -28,7 +45,8 @@
 		"expand": "Expandir",
 		"collapse": "Recolher",
 		"language": "Idioma",
-		"githubRepo": "GitHub"
+		"githubRepo": "GitHub",
+		"tipsBar": "Dicas"
 	},
 	"dnaCard": {
 		"edit": "Editar",

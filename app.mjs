@@ -33,6 +33,7 @@ import { createTag, getTagDisplay } from './modules/tags.mjs'
 import { confirmDialog, promptTextDialog, showToast } from './modules/ui.mjs'
 import { renderDnaList, renderTagFilterChips, renderTemplateStrip } from './modules/list-panel.mjs'
 import { openTagManager } from './modules/tag-manager.mjs'
+import { renderTipsMarquee } from './modules/tips-bar.mjs'
 
 function dnaTitle(d) {
 	if (d.nameI18nKey) return geti18n(d.nameI18nKey) || d.nameI18nKey
@@ -94,6 +95,10 @@ async function main() {
 			isDirty = true
 			renderDirtyFlag()
 		},
+	}
+
+	function refreshTipsBar() {
+		renderTipsMarquee(document.getElementById('tips-scroll-host'))
 	}
 
 	function refreshTemplateStripCollapsedUi() {
@@ -188,6 +193,7 @@ async function main() {
 			if (!db.tags.some((x) => x.id === id)) selectedFilterTagIds.delete(id)
 		const filterHost = document.getElementById('tag-filter-chips')
 		renderTagFilterChips(filterHost, db.tags, selectedFilterTagIds, toggleFilterTag, getTagDisplay)
+		refreshTipsBar()
 		loadMeta()
 		await refreshDnaList()
 		refreshTemplateStrip()

@@ -120,7 +120,9 @@
 		"haystack": "Heuhaufen",
 		"haystack_desc": "Heuhaufen im Laden",
 		"hot_sauce": "Scharfe Soße",
-		"hot_sauce_desc": "Scharfe Soße aus Tauschgeschäften, Belohnungen oder Erkundungen"
+		"hot_sauce_desc": "Scharfe Soße aus Tauschgeschäften, Belohnungen oder Erkundungen",
+		"antidote": "Gegenmittel",
+		"antidote_desc": "Gegenmittel, erhalten fuer $62375"
 	},
 	"editor": {
 		"crispr": "CRISPR-Ansicht",

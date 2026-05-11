@@ -120,7 +120,9 @@
 		"haystack": "干草堆",
 		"haystack_desc": "商店里的干草堆",
 		"hot_sauce": "辣酱",
-		"hot_sauce_desc": "交易、奖励或探索中获得的辣酱"
+		"hot_sauce_desc": "交易、奖励或探索中获得的辣酱",
+		"antidote": "解药",
+		"antidote_desc": "花费 $62375 得到的解药"
 	},
 	"editor": {
 		"crispr": "CRISPR 视图",

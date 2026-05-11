@@ -120,7 +120,9 @@
 		"haystack": "Palheiro",
 		"haystack_desc": "Palheiro na loja",
 		"hot_sauce": "Molho picante",
-		"hot_sauce_desc": "Molho picante de trocas, recompensas ou exploração"
+		"hot_sauce_desc": "Molho picante de trocas, recompensas ou exploração",
+		"antidote": "Antidoto",
+		"antidote_desc": "Antidoto obtido por $62375"
 	},
 	"editor": {
 		"crispr": "Visualização CRISPR",

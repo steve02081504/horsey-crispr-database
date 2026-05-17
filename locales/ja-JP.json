@@ -122,7 +122,9 @@
 		"hot_sauce": "ホットソース",
 		"hot_sauce_desc": "交換、報酬、探索で手に入る辛いソース",
 		"antidote": "解毒薬",
-		"antidote_desc": "$62375 で入手した解毒薬"
+		"antidote_desc": "$62375 で入手した解毒薬",
+		"dna": "DNA",
+		"dna_desc": "DNA の DNA"
 	},
 	"editor": {
 		"crispr": "CRISPR ビュー",

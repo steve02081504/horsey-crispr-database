@@ -122,7 +122,9 @@
 		"hot_sauce": "Scharfe Soße",
 		"hot_sauce_desc": "Scharfe Soße aus Tauschgeschäften, Belohnungen oder Erkundungen",
 		"antidote": "Gegenmittel",
-		"antidote_desc": "Gegenmittel, erhalten fuer $62375"
+		"antidote_desc": "Gegenmittel, erhalten fuer $62375",
+		"dna": "DNA",
+		"dna_desc": "Die DNA der DNA"
 	},
 	"editor": {
 		"crispr": "CRISPR-Ansicht",

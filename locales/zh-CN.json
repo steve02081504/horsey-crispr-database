@@ -122,7 +122,9 @@
 		"hot_sauce": "辣酱",
 		"hot_sauce_desc": "交易、奖励或探索中获得的辣酱",
 		"antidote": "解药",
-		"antidote_desc": "花费 $62375 得到的解药"
+		"antidote_desc": "花费 $62375 得到的解药",
+		"dna": "DNA",
+		"dna_desc": "DNA 的 DNA"
 	},
 	"editor": {
 		"crispr": "CRISPR 视图",

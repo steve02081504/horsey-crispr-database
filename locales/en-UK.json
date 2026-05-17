@@ -122,7 +122,9 @@
 		"hot_sauce": "Hot sauce",
 		"hot_sauce_desc": "Hot sauce from trades, rewards, or exploration",
 		"antidote": "Antidote",
-		"antidote_desc": "Antidote obtained for $62375"
+		"antidote_desc": "Antidote obtained for $62375",
+		"dna": "DNA",
+		"dna_desc": "DNA's DNA"
 	},
 	"editor": {
 		"crispr": "CRISPR view",
